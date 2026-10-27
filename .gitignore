@@ -1,0 +1,13 @@
+# secrets and private data - never commit
+api/config.php
+dt-config/
+dt-storage/
+api/storage/*
+!api/storage/.htaccess
+!api/storage/.gitkeep
+backend-python/.env
+backend-python/storage/
+backend-python/__pycache__/
+*.jsonl
+.DS_Store
+node_modules/
