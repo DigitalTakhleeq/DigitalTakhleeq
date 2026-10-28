@@ -365,30 +365,64 @@
 <header class="section-head" data-reveal>
 <p class="eyebrow">Pricing</p>
 <h2>Build your package.</h2>
-<p class="lead">Pick the capabilities you need. You get a starting figure now and a fixed milestone quote after a short discovery call.</p>
+<p class="lead">Pick what you need and the scope for each. You get a starting figure in PKR now, and a fixed milestone quote after a short discovery call.</p>
 </header>
 
 <div class="pricing" data-reveal>
-<div class="caps" role="group" aria-label="Capabilities">
-<button type="button" class="cap is-on" data-cap="Website" data-price="55000" aria-pressed="true"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Website</b><em>Fast and mobile-first. From PKR 55,000.</em></span></button>
-<button type="button" class="cap" data-cap="E-commerce" aria-pressed="false"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>E-commerce</b><em>Catalog and WhatsApp checkout.</em></span></button>
-<button type="button" class="cap" data-cap="Technical SEO" aria-pressed="false"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Technical SEO</b><em>Search visibility and tracking.</em></span></button>
-<button type="button" class="cap" data-cap="Content" aria-pressed="false"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Content</b><em>Copy written to convert.</em></span></button>
-<button type="button" class="cap" data-cap="Social media" aria-pressed="false"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Social media</b><em>Presence and community.</em></span></button>
-<button type="button" class="cap" data-cap="Paid ads" aria-pressed="false"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Paid ads</b><em>Tracked acquisition funnels.</em></span></button>
-<button type="button" class="cap is-on" data-cap="Automation" aria-pressed="true"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Automation</b><em>Workflows and alerts.</em></span></button>
-<button type="button" class="cap" data-cap="Custom software" aria-pressed="false"><span class="box"><svg class="ic"><use href="#i-check"/></svg></span><span class="cap-t"><b>Custom software</b><em>Portals and databases.</em></span></button>
+<div class="caps" id="caps" role="group" aria-label="Capabilities">
+<p class="caps-msg" id="capsMsg">Loading packages...</p>
+<noscript><p class="caps-msg">The package builder needs JavaScript. Message us on WhatsApp at +92 345 5052261 and we will send a quote.</p></noscript>
 </div>
 
-<aside class="quote" aria-live="polite">
+<aside class="quote" id="quote" aria-label="Your package">
+<div class="quote-view" id="quoteView">
 <p class="quote-label">Estimated starting investment</p>
-<p class="quote-figure" id="quoteFigure">PKR 55,000+</p>
-<div class="quote-scope">
-<p class="quote-count" id="quoteCount">2 capabilities selected</p>
-<ul class="quote-tags" id="quoteTags"></ul>
+<div class="quote-totals" aria-live="polite">
+<div class="quote-total" id="quoteOnceBox"><span class="quote-tl">One-time project</span><p class="quote-figure" id="quoteOnce">PKR 0</p></div>
+<div class="quote-total quote-total-m" id="quoteMonthlyBox" hidden><span class="quote-tl">Monthly retainer</span><p class="quote-figure" id="quoteMonthly">PKR 0</p></div>
 </div>
-<p class="quote-note" id="quoteNote">The Website starting price is shown. Other capabilities are quoted after a discovery call. Payments run in three milestones: 40% deposit, 30% review, 30% handover.</p>
-<a class="btn btn-gold" href="#contact" id="quoteCta">Discuss this scope <svg class="ic"><use href="#i-arrow"/></svg></a>
+<ul class="quote-lines" id="quoteLines"></ul>
+<p class="quote-note" id="quoteNote"></p>
+<div class="quote-actions" id="quoteActions">
+<a class="btn btn-gold btn-block" id="quoteWa" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg> Get quote on WhatsApp</a>
+<button class="btn btn-ghost btn-block" type="button" id="quoteMail" hidden><svg class="ic"><use href="#i-mail"/></svg> Send quote by email</button>
+</div>
+<a class="quote-alt" href="#contact">Prefer to describe your project? Use the contact form</a>
+</div>
+
+<form class="quote-form" id="quoteForm" action="api/contact.php" method="post" hidden novalidate>
+<p class="quote-label">Send this package by email</p>
+<ul class="quote-lines quote-lines-sm" id="quoteFormLines"></ul>
+<div class="field"><label for="q-name">Full name <span aria-hidden="true">*</span></label><input id="q-name" name="name" type="text" autocomplete="name" required maxlength="100"><p class="err" data-err="name"></p></div>
+<div class="field"><label for="q-email">Email address <span aria-hidden="true">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" required maxlength="254"><p class="err" data-err="email"></p></div>
+<div class="field"><label for="q-phone">Phone or WhatsApp</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"><p class="err" data-err="phone"></p></div>
+<div class="field"><label for="q-message">Anything we should know? (optional)</label><textarea id="q-message" name="message" rows="3" maxlength="2000"></textarea></div>
+<div class="hp" aria-hidden="true"><label for="q-website">Leave this field empty</label><input id="q-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<input type="hidden" name="ts" id="q-ts" value="">
+<div class="field consent"><label class="check"><input id="q-consent" type="checkbox" name="consent" value="yes" required><span class="check-box"><svg class="ic"><use href="#i-check"/></svg></span><span>I agree that Digital Takhleeq may use these details to reply to my inquiry, as described in the <a href="privacy.html">Privacy Policy</a>.</span></label><p class="err" data-err="consent"></p></div>
+<p class="form-status" id="quoteStatus" role="status" aria-live="polite"></p>
+<div class="quote-actions">
+<button class="btn btn-gold btn-block" type="submit" id="quoteSend"><span class="btn-label">Send package</span><span class="spinner" aria-hidden="true"></span></button>
+<button class="btn btn-ghost btn-block" type="button" id="quoteBack">Back to package</button>
+</div>
+</form>
+
+<div class="quote-state" id="quoteSuccess" hidden tabindex="-1">
+<span class="success-ic"><svg class="ic"><use href="#i-check"/></svg></span>
+<h3>Package sent.</h3>
+<p>We emailed you a copy of what you selected. Expect a reply within 24 hours.</p>
+<button class="btn btn-ghost btn-sm" type="button" id="quoteAgain">Back to package</button>
+</div>
+
+<div class="quote-state" id="quoteFallback" hidden tabindex="-1">
+<h3>We could not send that just now.</h3>
+<p>Nothing is lost. Your package is ready as a message, so send it from WhatsApp or your email app.</p>
+<div class="fallback-actions">
+<a class="btn btn-gold btn-sm" id="qfbWa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+<a class="btn btn-ghost btn-sm" id="qfbMail" href="#">Send from email</a>
+</div>
+<button class="btn-text" type="button" id="quoteFbBack">Back to package</button>
+</div>
 </aside>
 </div>
 </div>
@@ -543,10 +577,10 @@ TEAM BLOCK (hidden until you have real names and photos)
 
 <div class="fallback" id="formFallback" hidden tabindex="-1">
 <h3>We could not send that just now.</h3>
-<p>Nothing is lost. Please reach us directly and we will pick it up from there.</p>
+<p>Nothing is lost. Your inquiry is ready as a message, so send it from WhatsApp or your email app and we will pick it up from there.</p>
 <div class="fallback-actions">
-<a class="btn btn-navy btn-sm" href="https://wa.me/923455052261?text=Hello%20Digital%20Takhleeq%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
-<a class="btn btn-line btn-sm" href="mailto:digitaltakhleeq@gmail.com">Email us</a>
+<a class="btn btn-navy btn-sm" id="fbWa" href="https://wa.me/923455052261?text=Hello%20Digital%20Takhleeq%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">Send on WhatsApp</a>
+<a class="btn btn-line btn-sm" id="fbMail" href="mailto:digitaltakhleeq@gmail.com">Send from email</a>
 </div>
 </div>
 </div>
@@ -597,6 +631,7 @@ TEAM BLOCK (hidden until you have real names and photos)
 <svg class="ic"><use href="#i-chat"/></svg><span>WhatsApp</span>
 </a>
 
+<script src="assets/data/pricing.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
