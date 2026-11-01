@@ -1,8 +1,0 @@
-# Only contact.php may be reached from the web. Everything else in /api is private.
-<FilesMatch "\.(php|sample|json|jsonl|log|md)$">
-  Require all denied
-</FilesMatch>
-<Files "contact.php">
-  Require all granted
-</Files>
-Options -Indexes
